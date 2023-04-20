@@ -7,6 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    colors: {
+      'orange-300': '#fbaf85',
+      'orange-700': '#d87d4a',
+      'neutral-50': '#fafafa',
+      'neutral-300': '#f1f1f1',
+      'neutral-900': '#101010',
+      white: '#ffffff',
+      black: '#000000',
+    },
   },
   plugins: [],
 };
