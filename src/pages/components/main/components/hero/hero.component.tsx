@@ -9,7 +9,9 @@ export default function Hero() {
         Experience natural, lifelike audio and exceptional build quality made
         for the passionate music enthusiast.
       </p>
-      <Button type="primary">See Product</Button>
+      <Button type="primary">
+        <span>See Product</span>
+      </Button>
     </div>
   );
 }
