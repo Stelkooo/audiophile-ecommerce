@@ -52,11 +52,11 @@
 }
 
 @layer components {
-  .overline,
+  .heading-overline,
   .sub-title {
     text-transform: uppercase;
   }
-  .overline {
+  .heading-overline {
     font-size: 14px;
     line-height: 19px;
     letter-spacing: 10px;
