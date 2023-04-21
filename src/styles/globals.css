@@ -2,44 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+@layer components {
+  .heading-largest,
+  .heading-larger,
+  .heading-large,
+  .heading-small,
+  .heading-smaller,
+  .heading-smallest {
     font-weight: 700;
     text-transform: uppercase;
   }
-  h1,
-  h4 {
+  .heading-largest,
+  .heading-small {
     letter-spacing: 2px;
   }
-  h1 {
-    font-size: 56px;
-    line-height: 58px;
+  .heading-largest {
+    font-size: 36px;
+    line-height: 40px;
+    @media screen and (min-width: '768px') {
+      font-size: 56px;
+      line-height: 58px;
+    }
   }
-  h2 {
+  .heading-larger {
     font-size: 40px;
     line-height: 44px;
     letter-spacing: 1.5px;
   }
-  h3 {
+  .heading-large {
     font-size: 32px;
     line-height: 36px;
     letter-spacing: 1.15px;
   }
-  h4 {
+  .heading-small {
     font-size: 28px;
     line-height: 38px;
   }
-  h5 {
+  .heading-smaller {
     font-size: 24px;
     line-height: 33px;
     letter-spacing: 1.7px;
   }
-  h6 {
+  .heading-smallest {
     font-size: 18px;
     line-height: 24px;
     letter-spacing: 1.3px;
@@ -49,9 +53,6 @@
     font-size: 15px;
     line-height: 25px;
   }
-}
-
-@layer components {
   .heading-overline,
   .sub-title {
     text-transform: uppercase;
