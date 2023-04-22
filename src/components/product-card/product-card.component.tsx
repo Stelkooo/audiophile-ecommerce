@@ -1,9 +1,12 @@
-import Button from '@/components/button/button.component';
 import Image from 'next/image';
 
 import XX99MarkIIHeadphones from 'public/assets/product-xx99-mark-two-headphones/mobile/image-category-page-preview.jpg';
 
-export default function ProductCard() {
+type Props = {
+  children: JSX.Element | JSX.Element[];
+};
+
+export default function ProductCard({ children }: Props) {
   return (
     <div className="flex flex-col gap-8">
       <Image
@@ -11,7 +14,7 @@ export default function ProductCard() {
         alt="XX99 Mark II Headphones"
         className="rounded-lg"
       />
-      <div className="flex flex-col items-center gap-6 text-center">
+      <div className="flex flex-col gap-6">
         <p className="heading-overline text-orange-700">New Product</p>
         <h2 className="heading-small">XX99 Mark II Headphones</h2>
         <p className="opacity-50">
@@ -19,9 +22,7 @@ export default function ProductCard() {
           redefines your premium headphone experience by reproducing the
           balanced depth and precision of studio-quality sound.
         </p>
-        <Button type="primary">
-          <span>See Product</span>
-        </Button>
+        {children}
       </div>
     </div>
   );
