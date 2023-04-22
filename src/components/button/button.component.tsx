@@ -1,10 +1,11 @@
 type Props = {
   children: JSX.Element | JSX.Element[];
   type: 'primary' | 'secondary' | 'clear';
+  fullWidth?: boolean;
   onClick?: <T>(value?: T) => void;
 };
 
-export default function Button({ children, type, onClick }: Props) {
+export default function Button({ children, type, fullWidth, onClick }: Props) {
   const styleConfig: Record<
     typeof type,
     { text: string; bg: string; extra: string }
@@ -28,7 +29,11 @@ export default function Button({ children, type, onClick }: Props) {
   return (
     <button
       type="button"
-      className={`relative inline-flex max-w-max items-center gap-3 text-[13px] font-bold uppercase tracking-wider ${styleConfig[type].text} ${styleConfig[type].bg} ${styleConfig[type].extra}`}
+      className={`relative inline-flex ${
+        fullWidth ? 'w-full' : 'max-w-max'
+      } items-center gap-3 text-[13px] font-bold uppercase tracking-wider ${
+        styleConfig[type].text
+      } ${styleConfig[type].bg} ${styleConfig[type].extra}`}
       onClick={onClick}
     >
       {children}
@@ -38,4 +43,5 @@ export default function Button({ children, type, onClick }: Props) {
 
 Button.defaultProps = {
   onClick: null,
+  fullWidth: false,
 };

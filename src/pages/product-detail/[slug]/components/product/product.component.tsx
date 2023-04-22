@@ -8,9 +8,9 @@ import Image3 from 'public/assets/product-xx99-mark-two-headphones/mobile/image-
 
 import About from '@/components/about/about.component';
 import CategoryLinks from '@/components/products-list/category-links.component';
-
 import ProductCard from '@/components/product-card/product-card.component';
 import Button from '@/components/button/button.component';
+import ItemAmount from '@/components/item-amount/item-amount.component';
 
 import MayAlsoLike from './may-also-like/may-also-like.component';
 
@@ -33,23 +33,12 @@ export default function Product() {
             <div className="flex flex-col gap-8">
               <p>$ 2,999</p>
               <div className="flex items-center gap-4">
-                <div className="flex gap-5 bg-neutral-300 px-4 py-3 text-center">
-                  <button
-                    type="button"
-                    className="aspect-square w-4 opacity-25"
-                    onClick={() => minusOnClickHandler()}
-                  >
-                    -
-                  </button>
-                  <p className="aspect-square min-w-[1rem]">{amount}</p>
-                  <button
-                    type="button"
-                    className="aspect-square w-4 opacity-25"
-                    onClick={() => addOnClickHandler()}
-                  >
-                    +
-                  </button>
-                </div>
+                <ItemAmount
+                  amount={amount}
+                  minusOnClickHandler={minusOnClickHandler}
+                  addOnClickHandler={addOnClickHandler}
+                  chunky
+                />
                 <Button type="primary">
                   <span>Add To Cart</span>
                 </Button>
