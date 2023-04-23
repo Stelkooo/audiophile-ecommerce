@@ -3,7 +3,11 @@ import Image from 'next/image';
 
 import XX99MKII from 'public/assets/product-xx99-mark-two-headphones/mobile/image-product.jpg';
 
-export default function CartItem() {
+type Props = {
+  isSummary?: boolean;
+};
+
+export default function CartItem({ isSummary }: Props) {
   const minusOnClickHandler = () => {
     console.log('Minus');
   };
@@ -24,11 +28,19 @@ export default function CartItem() {
           <p className="text-[14px] font-bold opacity-50">$ 2,999</p>
         </div>
       </div>
-      <ItemAmount
-        amount={1}
-        minusOnClickHandler={minusOnClickHandler}
-        addOnClickHandler={addOnClickHandler}
-      />
+      {isSummary ? (
+        <p className="opacity-50">x1</p>
+      ) : (
+        <ItemAmount
+          amount={1}
+          minusOnClickHandler={minusOnClickHandler}
+          addOnClickHandler={addOnClickHandler}
+        />
+      )}
     </div>
   );
 }
+
+CartItem.defaultProps = {
+  isSummary: false,
+};

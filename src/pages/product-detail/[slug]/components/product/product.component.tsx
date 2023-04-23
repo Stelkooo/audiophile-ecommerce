@@ -11,6 +11,7 @@ import CategoryLinks from '@/components/products-list/category-links.component';
 import ProductCard from '@/components/product-card/product-card.component';
 import Button from '@/components/button/button.component';
 import ItemAmount from '@/components/item-amount/item-amount.component';
+import GoBack from '@/components/go-back/go-back.component';
 
 import MayAlsoLike from './may-also-like/may-also-like.component';
 
@@ -25,9 +26,9 @@ export default function Product() {
     setAmount(amount + 1);
   };
   return (
-    <main className="mx-auto mb-[7.5rem] mt-4 w-[327px]">
-      <p className="opacity-50">Go Back</p>
-      <div className="mt-6 grid gap-y-[7.5rem]">
+    <main className="mx-auto mb-[7.5rem] w-[327px]">
+      <GoBack />
+      <div className="grid gap-y-[7.5rem]">
         <div className="grid gap-y-[5.5rem]">
           <ProductCard>
             <div className="flex flex-col gap-8">
