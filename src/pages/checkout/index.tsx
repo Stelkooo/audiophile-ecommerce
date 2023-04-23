@@ -3,6 +3,7 @@ import { Manrope } from 'next/font/google';
 import GoBack from '@/components/go-back/go-back.component';
 import Header from '@/components/header/header.component';
 import Footer from '@/components/footer/footer.component';
+import CheckoutModal from '@/components/modal/components/checkout-modal/checkout-modal.component';
 
 import Form from './components/form/form';
 import Summary from './components/summary/summary.component';
@@ -21,6 +22,7 @@ export default function Home() {
             <Summary />
           </div>
         </div>
+        <CheckoutModal />
       </main>
       <Footer />
     </div>
