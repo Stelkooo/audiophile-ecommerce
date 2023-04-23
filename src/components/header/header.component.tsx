@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Logo from 'public/assets/shared/desktop/logo.svg';
 import Cart from 'public/assets/shared/desktop/icon-cart.svg';
 import Hamburger from 'public/assets/shared/tablet/icon-hamburger.svg';
+import MenuModal from '../modal/components/menu-modal/menu-modal.component';
 
 export default function Header() {
   return (
@@ -10,6 +11,7 @@ export default function Header() {
       <Image src={Hamburger} alt="Click for navigation menu" />
       <Image src={Logo} alt="Audiophile Logo" />
       <Image src={Cart} alt="Click to see cart contents" />
+      <MenuModal />
     </header>
   );
 }

@@ -6,7 +6,7 @@ import CategoryCard from './components/category-card/category-card.component';
 
 export default function CategoryLinks() {
   return (
-    <div className="grid gap-y-4">
+    <div className="grid w-full gap-y-4">
       <CategoryCard name="Headphones" image={Headphones} />
       <CategoryCard name="Speakers" image={Speakers} />
       <CategoryCard name="Earphones" image={Earphones} />

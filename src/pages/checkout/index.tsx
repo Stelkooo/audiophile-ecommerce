@@ -22,7 +22,7 @@ export default function Home() {
             <Summary />
           </div>
         </div>
-        <CheckoutModal />
+        {/* <CheckoutModal /> */}
       </main>
       <Footer />
     </div>
