@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import ZX9Speaker from 'public/assets/home/mobile/image-speaker-zx9.png';
 import Circles from 'public/assets/home/desktop/pattern-circles.svg';
+import Link from 'next/link';
 
 export default function LargeFeaturedProduct() {
   return (
@@ -25,9 +26,11 @@ export default function LargeFeaturedProduct() {
           Upgrade to premium speakers that are phenomenally built to deliver
           truly remarkable sound.
         </p>
-        <Button type="secondary">
-          <span>See Product</span>
-        </Button>
+        <Link href="/product-detail/xz9-speaker">
+          <Button type="secondary">
+            <span>See Product</span>
+          </Button>
+        </Link>
       </div>
     </div>
   );

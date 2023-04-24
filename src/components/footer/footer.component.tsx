@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Logo from 'public/assets/shared/desktop/logo.svg';
 import Facebook from 'public/assets/shared/desktop/icon-facebook.svg';
@@ -14,10 +15,18 @@ export default function Footer() {
         </div>
         <nav>
           <ul className="sub-title flex flex-col gap-4 uppercase">
-            <li>Home</li>
-            <li>Headphones</li>
-            <li>Speakers</li>
-            <li>Earphones</li>
+            <Link href="/">
+              <li>Home</li>
+            </Link>
+            <Link href="/category/headphones">
+              <li>Headphones</li>
+            </Link>
+            <Link href="/category/speakers">
+              <li>Speakers</li>
+            </Link>
+            <Link href="/category/earphones">
+              <li>Earphones</li>
+            </Link>
           </ul>
         </nav>
       </div>

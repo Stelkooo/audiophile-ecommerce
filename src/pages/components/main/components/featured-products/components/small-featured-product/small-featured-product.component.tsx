@@ -1,5 +1,7 @@
-import Button from '@/components/button/button.component';
 import Image from 'next/image';
+import Link from 'next/link';
+
+import Button from '@/components/button/button.component';
 
 import YX1Earphones from 'public/assets/home/mobile/image-earphones-yx1.jpg';
 
@@ -11,9 +13,11 @@ export default function SmallFeaturedProduct() {
       </div>
       <div className="flex flex-col items-start justify-center rounded-lg bg-neutral-300 px-6">
         <h3 className="heading-small mb-8">YX1 Earphones</h3>
-        <Button type="secondary">
-          <span>See Product</span>
-        </Button>
+        <Link href="yx1-earphones">
+          <Button type="secondary">
+            <span>See Product</span>
+          </Button>
+        </Link>
       </div>
     </div>
   );

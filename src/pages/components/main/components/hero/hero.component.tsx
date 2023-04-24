@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import ImageHeader from 'public/assets/home/mobile/image-header.jpg';
 
@@ -18,9 +19,11 @@ export default function Hero() {
         Experience natural, lifelike audio and exceptional build quality made
         for the passionate music enthusiast.
       </p>
-      <Button type="primary">
-        <span>See Product</span>
-      </Button>
+      <Link href="/product-detail/xx99-mark-two-headphones">
+        <Button type="primary">
+          <span>See Product</span>
+        </Button>
+      </Link>
     </div>
   );
 }
