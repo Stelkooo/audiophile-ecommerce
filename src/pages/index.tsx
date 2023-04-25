@@ -1,17 +1,58 @@
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { PreviewSuspense } from 'next-sanity/preview';
+import { lazy } from 'react';
 import { Manrope } from 'next/font/google';
 
+import client from '@/lib/sanity.client';
+
+import { ICategory } from '@/types';
+
+import CategoryLinks, {
+  getCategoriesQuery,
+} from '@/components/products-list/category-links.component';
 import Header from '@/components/header/header.component';
 import Footer from '@/components/footer/footer.component';
+import About from '@/components/about/about.component';
 
-import Main from './components/main/main.component';
+import Hero from './components/hero/hero.component';
+import FeaturedProducts from './components/featured-products/featured-products.component';
 
 const manrope = Manrope({ subsets: ['latin'] });
 
-export default function Home() {
+const PreviewCategoryLinks = lazy(
+  () => import('@/components/products-list/preview-category-links.component')
+);
+
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+  if (preview) {
+    return { props: { preview } };
+  }
+  const categories: ICategory[] = await client.fetch(getCategoriesQuery);
+  return { props: { preview, categories } };
+};
+
+export default function Home({
+  preview,
+  categories,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  if (preview) {
+    return (
+      <PreviewSuspense fallback="Loading...">
+        <PreviewCategoryLinks />
+      </PreviewSuspense>
+    );
+  }
   return (
     <div className={`${manrope.className}`}>
       <Header />
-      <Main />
+      <main>
+        <Hero />
+        <div className="mx-auto grid w-[327px] gap-y-[7.5rem] pb-[7.5rem] pt-10">
+          <CategoryLinks categories={categories} />
+          <FeaturedProducts />
+          <About />
+        </div>
+      </main>
       <Footer />
     </div>
   );
