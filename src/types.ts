@@ -22,7 +22,7 @@ export interface IProduct extends Base {
   isNew?: boolean;
   price?: number;
   description?: string;
-  features?: string;
+  features?: string[];
   includes?: IncludeItem[];
   gallery?: Gallery;
   others?: IOther[];

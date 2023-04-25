@@ -60,7 +60,13 @@ export default function Product({ product, categories }: Props) {
             </ProductCard>
             <div className="grid gap-y-6">
               <h2 className="heading-small">Features</h2>
-              <p className="font-medium opacity-50">{product.features}</p>
+              {product.features &&
+                product.features.map((feature, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <p className="font-medium opacity-50" key={`feature${index}`}>
+                    {feature}
+                  </p>
+                ))}
             </div>
             <div className="grid gap-y-6">
               <h2 className="heading-small">In the box</h2>
