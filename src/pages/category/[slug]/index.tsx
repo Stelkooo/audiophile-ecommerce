@@ -88,7 +88,7 @@ export default function Home({
   }
   return (
     <div className={`${manrope.className}`}>
-      <Header />
+      <Header categories={categories} />
       <main>
         <div className="bg-neutral-900 py-8 text-center text-white">
           <h1 className="heading-small">{category.name}</h1>

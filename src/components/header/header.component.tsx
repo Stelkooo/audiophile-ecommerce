@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import { useToggle, useOnClickOutside } from 'usehooks-ts';
 
+import { ICategory } from '@/types';
+
 import Logo from 'public/assets/shared/desktop/logo.svg';
 import Cart from 'public/assets/shared/desktop/icon-cart.svg';
 import Hamburger from 'public/assets/shared/tablet/icon-hamburger.svg';
@@ -10,7 +12,11 @@ import Hamburger from 'public/assets/shared/tablet/icon-hamburger.svg';
 import MenuModal from '../modal/components/menu-modal/menu-modal.component';
 import CartModal from '../modal/components/cart-modal/cart-modal.component';
 
-export default function Header() {
+type Props = {
+  categories: ICategory[];
+};
+
+export default function Header({ categories }: Props) {
   const [menu, menuToggle] = useToggle(false);
   const [cart, cartToggle] = useToggle(false);
 
@@ -37,7 +43,7 @@ export default function Header() {
             id="hamburger-menu"
           />
         </button>
-        {menu && <MenuModal />}
+        {menu && <MenuModal categories={categories} />}
       </div>
       <Image src={Logo} alt="Audiophile Logo" />
       <div ref={cartRef}>

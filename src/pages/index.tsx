@@ -44,7 +44,7 @@ export default function Home({
   }
   return (
     <div className={`${manrope.className}`}>
-      <Header />
+      <Header categories={categories} />
       <main>
         <Hero />
         <div className="mx-auto grid w-[327px] gap-y-[7.5rem] pb-[7.5rem] pt-10">

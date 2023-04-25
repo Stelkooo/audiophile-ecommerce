@@ -71,7 +71,7 @@ export default function Home({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div className={`${manrope.className}`}>
-      <Header />
+      <Header categories={categories} />
       <Product product={product} categories={categories} />
       <Footer />
     </div>

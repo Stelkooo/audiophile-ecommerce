@@ -11,9 +11,10 @@ export default function MayAlsoLike({ others }: Props) {
     <div>
       <h2 className="heading-smaller mb-10 text-center">You May Also Like</h2>
       <div className="flex flex-col gap-14">
-        {others.map((other) => (
-          <MayAlsoLikeItem other={other} key={other._id} />
-        ))}
+        {others &&
+          others.map((other) => (
+            <MayAlsoLikeItem other={other} key={other._id} />
+          ))}
       </div>
     </div>
   );
