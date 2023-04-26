@@ -51,6 +51,9 @@ const getCategory = groq`
     name,
     description,
     slug,
+    category-> {
+      name
+    },
   }
 }
 `;

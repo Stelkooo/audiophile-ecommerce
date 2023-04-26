@@ -9,7 +9,7 @@ type Base = {
 export interface ICategory extends Base {
   name?: string;
   slug?: Slug;
-  thumbnail?: Image;
+  thumbnail?: IImage;
   products?: IProduct[];
 }
 
@@ -17,7 +17,7 @@ export interface IProduct extends Base {
   name?: string;
   slug?: Slug;
   images?: Images;
-  category?: Reference;
+  category?: ICategory;
   categoryImages?: Images;
   isNew?: boolean;
   price?: number;
@@ -26,6 +26,7 @@ export interface IProduct extends Base {
   includes?: IncludeItem[];
   gallery?: Gallery;
   others?: IOther[];
+  cartImage?: IImage;
 }
 
 export interface IOther extends Base {
@@ -40,15 +41,15 @@ export type TSlugPayload = [
   }
 ];
 
-interface Image {
+export interface IImage {
   _type?: 'image';
   asset?: Reference;
 }
 
 interface Images {
-  mobile: Image;
-  tablet: Image;
-  desktop: Image;
+  mobile: IImage;
+  tablet: IImage;
+  desktop: IImage;
 }
 
 interface Gallery {

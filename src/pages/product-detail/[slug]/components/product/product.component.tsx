@@ -1,8 +1,10 @@
 import Image from 'next/image';
 
 import { useState } from 'react';
+import { useAppDispatch } from '@/store/hooks';
+import { ICartItem, addItemToCart } from '@/store/cart/cart.reducer';
 
-import { ICategory, IProduct } from '@/types';
+import { ICategory, IImage, IProduct } from '@/types';
 
 import urlFor from '@/lib/sanity.urlFor';
 
@@ -21,6 +23,8 @@ type Props = {
 };
 
 export default function Product({ product, categories }: Props) {
+  const dispatch = useAppDispatch();
+
   const [amount, setAmount] = useState<number>(1);
 
   const minusOnClickHandler = () => {
@@ -29,6 +33,19 @@ export default function Product({ product, categories }: Props) {
 
   const addOnClickHandler = () => {
     setAmount(amount + 1);
+  };
+
+  const addToCartHandler = () => {
+    if (product) {
+      const cartItem: ICartItem = {
+        _id: product._id as string,
+        image: product.cartImage as IImage,
+        name: product.name as string,
+        price: product.price as number,
+        quantity: amount,
+      };
+      dispatch(addItemToCart(cartItem));
+    }
   };
   if (product && categories) {
     return (
@@ -52,7 +69,7 @@ export default function Product({ product, categories }: Props) {
                     addOnClickHandler={addOnClickHandler}
                     chunky
                   />
-                  <Button type="primary">
+                  <Button type="primary" onClick={() => addToCartHandler()}>
                     <span>Add To Cart</span>
                   </Button>
                 </div>

@@ -22,7 +22,7 @@ export default function CheckoutModal() {
         </div>
         <div>
           <div className="rounded-t-lg bg-neutral-300 p-6">
-            <CartItem isSummary />
+            {/* <CartItem isSummary /> */}
           </div>
           <div className="rounded-b-lg bg-black px-6 py-4 text-white">
             <p className="mb-2 uppercase opacity-50">Grand Total</p>

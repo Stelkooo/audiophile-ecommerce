@@ -1,9 +1,13 @@
 import Image from 'next/image';
 
 import { useRef } from 'react';
-import { useToggle, useOnClickOutside } from 'usehooks-ts';
+import { useToggle, useOnClickOutside, useEffectOnce } from 'usehooks-ts';
 
 import { ICategory } from '@/types';
+
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { toggleIsCartOpen, setCartItems } from '@/store/cart/cart.reducer';
+import { selectIsCartOpen } from '@/store/cart/cart.selector';
 
 import Logo from 'public/assets/shared/desktop/logo.svg';
 import Cart from 'public/assets/shared/desktop/icon-cart.svg';
@@ -17,8 +21,11 @@ type Props = {
 };
 
 export default function Header({ categories }: Props) {
+  const dispatch = useAppDispatch();
+
+  const isCartOpen = useAppSelector(selectIsCartOpen);
+
   const [menu, menuToggle] = useToggle(false);
-  const [cart, cartToggle] = useToggle(false);
 
   const menuRef = useRef<HTMLDivElement>(null);
   const cartRef = useRef<HTMLDivElement>(null);
@@ -28,11 +35,18 @@ export default function Header({ categories }: Props) {
   };
 
   const cartOnClickOutsideHandler = () => {
-    if (cart) cartToggle();
+    if (isCartOpen) dispatch(toggleIsCartOpen());
   };
 
   useOnClickOutside(menuRef, menuOnClickOutsideHandler);
   useOnClickOutside(cartRef, cartOnClickOutsideHandler);
+
+  useEffectOnce(() => {
+    const getLocalCartItems = localStorage.getItem('cart');
+    if (getLocalCartItems) {
+      dispatch(setCartItems(JSON.parse(getLocalCartItems)));
+    }
+  });
   return (
     <header className="flex items-center justify-between border-b border-white border-opacity-10 bg-neutral-900 px-6 py-8">
       <div ref={menuRef}>
@@ -47,10 +61,10 @@ export default function Header({ categories }: Props) {
       </div>
       <Image src={Logo} alt="Audiophile Logo" />
       <div ref={cartRef}>
-        <button type="button" onClick={() => cartToggle()}>
+        <button type="button" onClick={() => dispatch(toggleIsCartOpen())}>
           <Image src={Cart} alt="Click to see cart contents" />
         </button>
-        {cart && <CartModal />}
+        {isCartOpen && <CartModal />}
       </div>
     </header>
   );

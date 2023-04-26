@@ -133,6 +133,12 @@ export default defineType({
       of: [defineArrayMember({ type: 'reference', to: [{ type: 'other' }] })],
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: 'cartImage',
+      title: 'Cart Image',
+      type: 'image',
+      validation: (rule) => rule.required(),
+    }),
   ],
   initialValue: {
     isNew: false,

@@ -43,6 +43,7 @@ const getProduct = groq`
   includes,
   gallery,
   others[]->,
+  cartImage,
 }
 `;
 

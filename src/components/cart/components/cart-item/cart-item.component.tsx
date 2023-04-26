@@ -1,38 +1,53 @@
-import ItemAmount from '@/components/item-amount/item-amount.component';
 import Image from 'next/image';
 
-import XX99MKII from 'public/assets/product-xx99-mark-two-headphones/mobile/image-product.jpg';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import {
+  ICartItem,
+  addItemToCart,
+  removeItemFromCart,
+} from '@/store/cart/cart.reducer';
+
+import ItemAmount from '@/components/item-amount/item-amount.component';
+
+import urlFor from '@/lib/sanity.urlFor';
 
 type Props = {
   isSummary?: boolean;
+  item: ICartItem;
 };
 
-export default function CartItem({ isSummary }: Props) {
+export default function CartItem({ isSummary, item }: Props) {
+  const dispatch = useAppDispatch();
+
   const minusOnClickHandler = () => {
-    console.log('Minus');
+    dispatch(removeItemFromCart({ ...item }));
   };
 
   const addOnClickHandler = () => {
-    console.log('Add');
+    dispatch(addItemToCart({ ...item, quantity: 1 }));
   };
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-4">
         <Image
-          src={XX99MKII}
-          alt="Headphones"
-          className="aspect-square w-16 rounded-lg"
+          src={urlFor(item.image).url()}
+          alt={item.name}
+          width={64}
+          height={64}
+          className="rounded-lg"
         />
         <div>
-          <p className="font-bold">XX99 MK II</p>
-          <p className="text-[14px] font-bold opacity-50">$ 2,999</p>
+          <p className="font-bold">{item.name}</p>
+          <p className="text-[14px] font-bold opacity-50">
+            $ {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          </p>
         </div>
       </div>
       {isSummary ? (
         <p className="opacity-50">x1</p>
       ) : (
         <ItemAmount
-          amount={1}
+          amount={item.quantity}
           minusOnClickHandler={minusOnClickHandler}
           addOnClickHandler={addOnClickHandler}
         />
