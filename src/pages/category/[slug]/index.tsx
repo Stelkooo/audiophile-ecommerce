@@ -11,18 +11,19 @@ import { ICategory, IProduct, TSlugPayload } from '@/types';
 
 import CategoryLinks, {
   getCategoriesQuery,
-} from '@/components/products-list/category-links.component';
-import Header from '@/components/header/header.component';
-import Footer from '@/components/footer/footer.component';
-import About from '@/components/about/about.component';
-import Button from '@/components/button/button.component';
-import ProductCard from '@/components/product-card/product-card.component';
+} from '@/components/global/products-list/category-links.component';
+import Header from '@/components/global/header/header.component';
+import Footer from '@/components/global/footer/footer.component';
+import About from '@/components/global/about/about.component';
+import Button from '@/components/global/button/button.component';
+import ProductCard from '@/components/global/product-card/product-card.component';
 import Link from 'next/link';
 
 const manrope = Manrope({ subsets: ['latin'] });
 
 const PreviewCategoryLinks = lazy(
-  () => import('@/components/products-list/preview-category-links.component')
+  () =>
+    import('@/components/global/products-list/preview-category-links.component')
 );
 
 const getCategoriesSlug = groq`

@@ -7,11 +7,10 @@ import client from '@/lib/sanity.client';
 
 import { ICategory, IProduct, TSlugPayload } from '@/types';
 
-import Header from '@/components/header/header.component';
-import Footer from '@/components/footer/footer.component';
-import { getCategoriesQuery } from '@/components/products-list/category-links.component';
-
-import Product from './components/product/product.component';
+import Header from '@/components/global/header/header.component';
+import Footer from '@/components/global/footer/footer.component';
+import Product from '@/components/product-detail/product/product.component';
+import { getCategoriesQuery } from '@/components/global/products-list/category-links.component';
 
 const manrope = Manrope({ subsets: ['latin'] });
 
