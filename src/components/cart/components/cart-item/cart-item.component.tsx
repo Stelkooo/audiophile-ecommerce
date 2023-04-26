@@ -44,7 +44,7 @@ export default function CartItem({ isSummary, item }: Props) {
         </div>
       </div>
       {isSummary ? (
-        <p className="opacity-50">x1</p>
+        <p className="opacity-50">x{item.quantity}</p>
       ) : (
         <ItemAmount
           amount={item.quantity}
