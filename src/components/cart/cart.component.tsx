@@ -36,9 +36,7 @@ export default function Cart({ isSummary }: Props) {
   };
 
   const onClickHandler = () => {
-    if (isSummary) {
-      console.log('hi');
-    } else {
+    if (!isSummary) {
       if (isCartOpen) dispatch(toggleIsCartOpen());
       router.push('/checkout');
     }
@@ -99,7 +97,12 @@ export default function Cart({ isSummary }: Props) {
           </div>
         )}
       </div>
-      <Button type="primary" fullWidth onClick={() => onClickHandler()}>
+      <Button
+        type="primary"
+        fullWidth
+        onClick={() => onClickHandler()}
+        isSubmit={isSummary}
+      >
         <span className="w-full">
           {isSummary ? 'Continue and Pay' : 'Checkout'}
         </span>

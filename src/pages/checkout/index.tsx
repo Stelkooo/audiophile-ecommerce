@@ -33,10 +33,7 @@ export default function Home({
       <main className="bg-neutral-300 pb-24">
         <div className="mx-auto w-[327px]">
           <GoBack />
-          <div className="grid gap-y-8">
-            <Form />
-            <Summary />
-          </div>
+          <Form />
         </div>
         {/* <CheckoutModal /> */}
       </main>

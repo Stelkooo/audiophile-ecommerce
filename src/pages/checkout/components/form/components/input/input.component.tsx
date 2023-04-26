@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 
 type Props = {
   type: 'text' | 'email';
@@ -7,7 +7,7 @@ type Props = {
   name: string;
 };
 
-export default function Input({ type, label, placeholder, name }: Props) {
+function Input({ type, label, placeholder, name }: Props) {
   return (
     <div>
       <label htmlFor={name} className="grid gap-y-2">
@@ -22,3 +22,7 @@ export default function Input({ type, label, placeholder, name }: Props) {
     </div>
   );
 }
+
+const forwardedInput = forwardRef(Input);
+
+export default forwardedInput;

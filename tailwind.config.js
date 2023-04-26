@@ -15,6 +15,7 @@ module.exports = {
       'neutral-900': '#101010',
       white: '#ffffff',
       black: '#000000',
+      danger: '#cd2c2c',
     },
   },
   // eslint-disable-next-line global-require
