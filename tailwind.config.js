@@ -17,5 +17,6 @@ module.exports = {
       black: '#000000',
     },
   },
+  // eslint-disable-next-line global-require
   plugins: [require('@tailwindcss/forms')],
 };
