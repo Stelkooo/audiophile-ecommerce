@@ -1,4 +1,15 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+import { useRef } from 'react';
+import { useOnClickOutside } from 'usehooks-ts';
+
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { removeAllCartItems } from '@/store/cart/cart.reducer';
+import {
+  selectCartItems,
+  selectCartGrandTotal,
+} from '@/store/cart/cart.selector';
 
 import Check from 'public/assets/checkout/icon-order-confirmation.svg';
 
@@ -7,10 +18,28 @@ import Button from '@/components/global/button/button.component';
 
 import Modal from '../../modal.component';
 
-export default function CheckoutModal() {
+type Props = {
+  toggleModalOpen: () => void;
+};
+
+export default function CheckoutModal({ toggleModalOpen }: Props) {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  const cartItems = useAppSelector(selectCartItems);
+  const grandTotal = useAppSelector(selectCartGrandTotal);
+
+  const returnToHomeHandler = () => {
+    toggleModalOpen();
+    dispatch(removeAllCartItems());
+    router.push('/');
+  };
+
+  useOnClickOutside(modalRef, returnToHomeHandler);
   return (
     <Modal tailwind="fixed left-1/2 top-1/2 z-50 flex w-[343px] -translate-x-1/2 -translate-y-1/2 rounded-md p-8">
-      <div className="grid gap-y-6">
+      <div className="grid gap-y-6" ref={modalRef}>
         <Image src={Check} alt="" />
         <div>
           <h2 className="mb-4 text-[24px]/[28px] font-bold uppercase tracking-wide">
@@ -22,14 +51,21 @@ export default function CheckoutModal() {
         </div>
         <div>
           <div className="rounded-t-lg bg-neutral-300 p-6">
-            {/* <CartItem isSummary /> */}
+            {cartItems[0] && <CartItem isSummary item={cartItems[0]} />}
+            {cartItems.length > 0 && (
+              <p className="border-t border-t-neutral-900 border-opacity-20 pt-3 text-center text-[12px]/[1rem] font-bold opacity-50">
+                and {cartItems.length - 1} other item(s)
+              </p>
+            )}
           </div>
           <div className="rounded-b-lg bg-black px-6 py-4 text-white">
             <p className="mb-2 uppercase opacity-50">Grand Total</p>
-            <p className="heading-smallest">$ 5,446</p>
+            <p className="heading-smallest">
+              $ {grandTotal.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            </p>
           </div>
         </div>
-        <Button type="primary" fullWidth>
+        <Button type="primary" fullWidth onClick={() => returnToHomeHandler()}>
           <span className="w-full">Back to home</span>
         </Button>
       </div>

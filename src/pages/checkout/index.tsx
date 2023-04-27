@@ -8,7 +8,6 @@ import { ICategory } from '@/types';
 import GoBack from '@/components/global/go-back/go-back.component';
 import Header from '@/components/global/header/header.component';
 import Footer from '@/components/global/footer/footer.component';
-import CheckoutModal from '@/components/global/modal/components/checkout-modal/checkout-modal.component';
 import { getCategoriesQuery } from '@/components/global/products-list/category-links.component';
 
 import Form from '@/components/checkout/form/form';
@@ -34,7 +33,6 @@ export default function Home({
           <GoBack />
           <Form />
         </div>
-        {/* <CheckoutModal /> */}
       </main>
       <Footer />
     </div>

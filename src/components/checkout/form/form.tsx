@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-
+import { useToggle } from 'usehooks-ts';
 /* eslint-disable react/jsx-props-no-spreading */
 import { z, ZodType } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import CashOnDeliveryIcon from 'public/assets/checkout/icon-cash-on-delivery.svg';
 
+import CheckoutModal from '@/components/global/modal/components/checkout-modal/checkout-modal.component';
 import Summary from '../summary/summary.component';
 
 const PaymentMethods = [
@@ -35,6 +36,8 @@ interface IFormData {
 }
 
 export default function Form() {
+  const [isModalOpen, toggleModalOpen] = useToggle(false);
+
   const schema: ZodType<IFormData> = z
     .object({
       name: z.string().min(1),
@@ -84,8 +87,8 @@ export default function Form() {
 
   const watchPaymentMethod = watch('paymentMethod');
 
-  const submitDataHandler = (data: IFormData) => {
-    console.log('Data submitted', data);
+  const submitDataHandler = () => {
+    toggleModalOpen();
   };
   return (
     <form className="grid gap-y-8" onSubmit={handleSubmit(submitDataHandler)}>
@@ -410,6 +413,7 @@ export default function Form() {
         </div>
       </div>
       <Summary />
+      {isModalOpen && <CheckoutModal toggleModalOpen={toggleModalOpen} />}
     </form>
   );
 }
