@@ -94,10 +94,10 @@ export default function Home({
     <div className={`${manrope.className}`}>
       <Header categories={categories} />
       <main>
-        <div className="bg-neutral-900 py-8 text-center text-white">
+        <div className="bg-neutral-900 py-8 text-center text-white md:py-24">
           <h1 className="heading-small">{category.name}</h1>
         </div>
-        <div className="mx-auto mb-[7.5rem] mt-16 grid w-[327px] gap-y-[7.5rem] text-center">
+        <div className="mx-auto mb-[7.5rem] mt-16 grid w-[327px] gap-y-[7.5rem] text-center md:w-[689px]">
           {category.products.map((product: IProduct) => (
             <ProductCard product={product} key={product._id}>
               <div className="justify-self-center">
