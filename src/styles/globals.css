@@ -19,10 +19,10 @@
   .heading-largest {
     font-size: 36px;
     line-height: 40px;
-    @media screen and (min-width: '768px') {
-      font-size: 56px;
-      line-height: 58px;
-    }
+  }
+  .heading-largest-tablet {
+    font-size: 56px;
+    line-height: 58px;
   }
   .heading-larger {
     font-size: 40px;
