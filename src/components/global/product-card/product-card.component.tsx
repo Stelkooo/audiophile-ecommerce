@@ -11,7 +11,7 @@ type Props = {
 export default function ProductCard({ children, product }: Props) {
   if (product)
     return (
-      <div className="flex flex-col gap-8">
+      <>
         <picture>
           <source
             media="(min-width:768px)"
@@ -29,7 +29,7 @@ export default function ProductCard({ children, product }: Props) {
             height={704}
           />
         </picture>
-        <div className="flex flex-col gap-6 md:mx-auto md:w-[572px]">
+        <div className="flex flex-col justify-center gap-6">
           {product.isNew && (
             <p className="heading-overline text-orange-700">New Product</p>
           )}
@@ -37,7 +37,7 @@ export default function ProductCard({ children, product }: Props) {
           <p className="opacity-50">{product.description}</p>
           {children}
         </div>
-      </div>
+      </>
     );
   return <div />;
 }

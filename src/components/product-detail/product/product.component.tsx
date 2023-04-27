@@ -49,34 +49,36 @@ export default function Product({ product, categories }: Props) {
   };
   if (product && categories) {
     return (
-      <main className="mx-auto mb-[7.5rem] w-[327px]">
+      <main className="mx-auto mb-[7.5rem] w-[327px] md:w-[689px]">
         <GoBack />
         <div className="grid gap-y-[7.5rem]">
           <div className="grid gap-y-[5.5rem]">
-            <ProductCard product={product}>
-              <div className="flex flex-col gap-8">
-                <p>
-                  ${' '}
-                  {product.price &&
-                    product.price
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                </p>
-                <div className="flex items-center gap-4">
-                  <ItemAmount
-                    amount={amount}
-                    minusOnClickHandler={minusOnClickHandler}
-                    addOnClickHandler={addOnClickHandler}
-                    chunky
-                  />
-                  <Button type="primary" onClick={() => addToCartHandler()}>
-                    <span>Add To Cart</span>
-                  </Button>
+            <div className="grid gap-y-8 md:grid-cols-[281px_1fr] md:gap-x-16 md:gap-y-0">
+              <ProductCard product={product}>
+                <div className="flex flex-col gap-8">
+                  <p>
+                    ${' '}
+                    {product.price &&
+                      product.price
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <ItemAmount
+                      amount={amount}
+                      minusOnClickHandler={minusOnClickHandler}
+                      addOnClickHandler={addOnClickHandler}
+                      chunky
+                    />
+                    <Button type="primary" onClick={() => addToCartHandler()}>
+                      <span>Add To Cart</span>
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </ProductCard>
+              </ProductCard>
+            </div>
             <div className="grid gap-y-6">
-              <h2 className="heading-small">Features</h2>
+              <h2 className="heading-small md:heading-large">Features</h2>
               {product.features &&
                 product.features.map((feature, index) => (
                   // eslint-disable-next-line react/no-array-index-key
@@ -85,8 +87,8 @@ export default function Product({ product, categories }: Props) {
                   </p>
                 ))}
             </div>
-            <div className="grid gap-y-6">
-              <h2 className="heading-small">In the box</h2>
+            <div className="grid gap-y-6 md:grid-cols-2">
+              <h2 className="heading-small md:heading-large">In the box</h2>
               <div className="grid gap-y-2">
                 {product.includes &&
                   product.includes.map((item) => (
@@ -99,30 +101,48 @@ export default function Product({ product, categories }: Props) {
                   ))}
               </div>
             </div>
-            <div className="grid gap-y-5">
+            <div className="grid gap-y-5 md:grid-cols-[277px_1fr] md:gap-x-5 md:gap-y-5">
               {product.gallery && (
                 <>
-                  <Image
-                    src={urlFor(product.gallery.first.mobile).url()}
-                    alt=""
-                    className="rounded-lg"
-                    width={327}
-                    height={174}
-                  />
-                  <Image
-                    src={urlFor(product.gallery.second.mobile).url()}
-                    alt=""
-                    className="rounded-lg"
-                    width={327}
-                    height={174}
-                  />
-                  <Image
-                    src={urlFor(product.gallery.third.mobile).url()}
-                    alt=""
-                    className="rounded-lg"
-                    width={327}
-                    height={368}
-                  />
+                  <picture>
+                    <source
+                      media="(min-width:768px)"
+                      srcSet={urlFor(product.gallery.first.tablet).url()}
+                    />
+                    <Image
+                      src={urlFor(product.gallery.first.mobile).url()}
+                      alt=""
+                      className="rounded-lg"
+                      width={327}
+                      height={174}
+                    />
+                  </picture>
+                  <picture className="md:row-start-2">
+                    <source
+                      media="(min-width:768px)"
+                      srcSet={urlFor(product.gallery.second.tablet).url()}
+                    />
+                    <Image
+                      src={urlFor(product.gallery.second.mobile).url()}
+                      alt=""
+                      className="rounded-lg"
+                      width={327}
+                      height={174}
+                    />
+                  </picture>
+                  <picture className="md:row-span-2 ">
+                    <source
+                      media="(min-width:768px)"
+                      srcSet={urlFor(product.gallery.third.tablet).url()}
+                    />
+                    <Image
+                      src={urlFor(product.gallery.third.mobile).url()}
+                      alt=""
+                      className="rounded-lg md:h-full md:w-full"
+                      width={327}
+                      height={368}
+                    />
+                  </picture>
                 </>
               )}
             </div>

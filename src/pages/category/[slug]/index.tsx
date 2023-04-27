@@ -99,15 +99,17 @@ export default function Home({
         </div>
         <div className="mx-auto mb-[7.5rem] mt-16 grid w-[327px] gap-y-[7.5rem] text-center md:w-[689px]">
           {category.products.map((product: IProduct) => (
-            <ProductCard product={product} key={product._id}>
-              <div className="justify-self-center">
-                <Link href={`/product-detail/${product.slug?.current}`}>
-                  <Button type="primary">
-                    <span>See Product</span>
-                  </Button>
-                </Link>
-              </div>
-            </ProductCard>
+            <div className="flex flex-col gap-8" key={product._id}>
+              <ProductCard product={product}>
+                <div className="justify-self-center">
+                  <Link href={`/product-detail/${product.slug?.current}`}>
+                    <Button type="primary">
+                      <span>See Product</span>
+                    </Button>
+                  </Link>
+                </div>
+              </ProductCard>
+            </div>
           ))}
           <CategoryLinks categories={categories} />
           <About />
