@@ -48,23 +48,25 @@ export default function Header({ categories }: Props) {
     }
   });
   return (
-    <header className="flex items-center justify-between border-b border-white border-opacity-10 bg-neutral-900 px-6 py-8">
-      <div ref={menuRef}>
-        <button type="button" onClick={() => menuToggle()}>
-          <Image
-            src={Hamburger}
-            alt="Click for navigation menu"
-            id="hamburger-menu"
-          />
-        </button>
-        {menu && <MenuModal categories={categories} />}
-      </div>
-      <Image src={Logo} alt="Audiophile Logo" />
-      <div ref={cartRef}>
-        <button type="button" onClick={() => dispatch(toggleIsCartOpen())}>
-          <Image src={Cart} alt="Click to see cart contents" />
-        </button>
-        {isCartOpen && <CartModal />}
+    <header className="bg-neutral-900">
+      <div className="flex items-center border-b border-white border-opacity-10 px-6 py-8 md:mx-auto md:w-[689px] md:px-0">
+        <div ref={menuRef} className="mr-auto md:mr-10">
+          <button type="button" onClick={() => menuToggle()}>
+            <Image
+              src={Hamburger}
+              alt="Click for navigation menu"
+              id="hamburger-menu"
+            />
+          </button>
+          {menu && <MenuModal categories={categories} />}
+        </div>
+        <Image src={Logo} alt="Audiophile Logo" />
+        <div ref={cartRef} className="ml-auto">
+          <button type="button" onClick={() => dispatch(toggleIsCartOpen())}>
+            <Image src={Cart} alt="Click to see cart contents" />
+          </button>
+          {isCartOpen && <CartModal />}
+        </div>
       </div>
     </header>
   );

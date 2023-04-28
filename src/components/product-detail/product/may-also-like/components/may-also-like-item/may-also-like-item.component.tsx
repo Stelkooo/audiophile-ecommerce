@@ -15,15 +15,21 @@ export default function MayAlsoLikeItem({ other }: Props) {
   if (other)
     return (
       <div className="flex flex-col gap-8">
-        <div className="flex h-28 justify-center rounded-lg bg-neutral-300">
+        <div className="flex h-28 justify-center overflow-hidden rounded-lg bg-neutral-300 md:h-[318px]">
           {other.name && (
-            <Image
-              src={urlFor(other.images?.mobile).url()}
-              alt={other.name}
-              className="h-28 w-auto"
-              width={654}
-              height={240}
-            />
+            <picture>
+              <source
+                media="(min-width:768px)"
+                srcSet={urlFor(other.images?.tablet).url()}
+              />
+              <Image
+                src={urlFor(other.images?.mobile).url()}
+                alt={other.name}
+                className="h-28 w-auto md:h-[318px]"
+                width={654}
+                height={240}
+              />
+            </picture>
           )}
         </div>
         <div className="flex flex-col items-center gap-8">

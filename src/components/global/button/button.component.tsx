@@ -29,7 +29,7 @@ export default function Button({
     },
     clear: {
       text: 'text-black',
-      bg: 'bg-danger',
+      bg: '',
       extra: 'text-opacity-50',
     },
   };

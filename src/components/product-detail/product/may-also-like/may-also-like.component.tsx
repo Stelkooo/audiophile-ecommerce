@@ -9,8 +9,10 @@ type Props = {
 export default function MayAlsoLike({ others }: Props) {
   return (
     <div>
-      <h2 className="heading-smaller mb-10 text-center">You May Also Like</h2>
-      <div className="flex flex-col gap-14">
+      <h2 className="heading-smaller md:heading-large mb-10 text-center">
+        You May Also Like
+      </h2>
+      <div className="flex flex-col gap-14 md:flex-row md:gap-3">
         {others &&
           others.map((other) => (
             <MayAlsoLikeItem other={other} key={other._id} />

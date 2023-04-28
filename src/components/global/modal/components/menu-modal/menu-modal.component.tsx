@@ -10,7 +10,7 @@ type Props = {
 
 export default function MenuModal({ categories }: Props) {
   return (
-    <Modal tailwind="absolute left-1/2 z-50 flex w-full h-2/3 -translate-x-1/2 rounded-b-md py-8 px-6 min-h-fit overflow-y-scroll">
+    <Modal tailwind="absolute left-1/2 z-50 flex w-full h-2/3 md:h-min -translate-x-1/2 rounded-b-md py-8 px-6 min-h-fit overflow-y-scroll">
       <CategoryLinks categories={categories} />
     </Modal>
   );

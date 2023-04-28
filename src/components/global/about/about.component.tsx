@@ -5,9 +5,15 @@ import BestGear from 'public/assets/shared/mobile/image-best-gear.jpg';
 export default function About() {
   return (
     <div className="flex flex-col gap-10 text-center">
-      <Image src={BestGear} alt="" className="rounded-lg" />
-      <div className="flex flex-col gap-8 text-center">
-        <h4 className="heading-small">
+      <picture>
+        <source
+          media="(min-width:768px)"
+          srcSet="/assets/shared/tablet/image-best-gear.jpg"
+        />
+        <Image src={BestGear} alt="" className="w-full rounded-lg" />
+      </picture>
+      <div className="flex flex-col items-center gap-8 text-center md:mx-auto md:w-[573px]">
+        <h4 className="heading-small md:heading-larger">
           Bringing you the <span className="text-orange-700">best</span> audio
           gear
         </h4>

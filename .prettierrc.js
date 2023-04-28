@@ -3,6 +3,6 @@ module.exports = {
   tabWidth: 2,
   semi: true,
   singleQuote: true,
-  plugins: [require('prettier-plugin-tailwindcss')],
-  tailwindConfig: './tailwind.config.js',
+  // plugins: [require('prettier-plugin-tailwindcss')],
+  // tailwindConfig: './tailwind.config.js',
 };
