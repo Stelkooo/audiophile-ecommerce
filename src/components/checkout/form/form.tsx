@@ -93,7 +93,10 @@ export default function Form() {
     toggleModalOpen();
   };
   return (
-    <form className="grid gap-y-8" onSubmit={handleSubmit(submitDataHandler)}>
+    <form
+      className="grid gap-y-8 xl:grid-cols-[1fr_350px] xl:gap-x-8"
+      onSubmit={handleSubmit(submitDataHandler)}
+    >
       <div className="grid gap-y-8 rounded-lg bg-white p-6">
         <h1 className="heading-small">Checkout</h1>
         <div>
