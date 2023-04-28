@@ -26,6 +26,7 @@ const PaymentMethods = [
 interface IFormData {
   name: string;
   email: string;
+  phone: string;
   address: string;
   zipCode: string;
   city: string;
@@ -42,6 +43,7 @@ export default function Form() {
     .object({
       name: z.string().min(1),
       email: z.string().email(),
+      phone: z.string().min(1),
       address: z.string().min(1),
       zipCode: z.string().min(5).max(5),
       city: z.string().min(1),
@@ -96,7 +98,7 @@ export default function Form() {
         <h1 className="heading-small">Checkout</h1>
         <div>
           <h2 className="sub-title mb-4 text-orange-700">Billing Details</h2>
-          <div className="grid gap-y-6">
+          <div className="grid gap-y-6 md:grid-cols-2 md:gap-x-4">
             <div>
               <label htmlFor="name" className="grid gap-y-2">
                 <div className="flex items-center justify-between">
@@ -161,50 +163,74 @@ export default function Form() {
                 />
               </label>
             </div>
-            {/* <Input
-              type="text"
-              label="Phone Number"
-              placeholder="+1 202-555-0136"
-              name="phone"
-            /> */}
+            <div>
+              <label htmlFor="phone" className="grid gap-y-2">
+                <div className="flex items-center justify-between">
+                  <span
+                    className={`text-[12px]/[1rem] font-bold ${
+                      errors.phone ? 'text-danger' : 'text-black'
+                    }`}
+                  >
+                    Phone Number
+                  </span>
+                  {errors.phone && (
+                    <span
+                      className={`text-[12px]/[1rem] ${
+                        errors.phone ? 'text-danger' : 'text-black'
+                      }`}
+                    >
+                      Must be 9 characters
+                    </span>
+                  )}
+                </div>
+                <input
+                  type="text"
+                  placeholder="+1 202-555-0136"
+                  className={`${
+                    errors.phone
+                      ? 'border-2 border-danger focus-within:border-danger'
+                      : 'border border-neutral-300'
+                  } rounded-lg  px-6 py-[1.125rem] text-[14px]/[19px] font-bold`}
+                  {...register('phone')}
+                />
+              </label>
+            </div>
           </div>
         </div>
         <div>
           <h2 className="sub-title mb-4 text-orange-700">Shipping Info</h2>
-          <div className="grid gap-y-6">
-            <div>
-              <div>
-                <label htmlFor="address" className="grid gap-y-2">
-                  <div className="flex items-center justify-between">
+          <div className="grid gap-y-6 md:grid-cols-2 md:gap-x-4">
+            <div className="md:col-span-2">
+              <label htmlFor="address" className="grid gap-y-2">
+                <div className="flex items-center justify-between">
+                  <span
+                    className={`text-[12px]/[1rem] font-bold ${
+                      errors.address ? 'text-danger' : 'text-black'
+                    }`}
+                  >
+                    Your Address
+                  </span>
+                  {errors.address && (
                     <span
-                      className={`text-[12px]/[1rem] font-bold ${
+                      className={`text-[12px]/[1rem] ${
                         errors.address ? 'text-danger' : 'text-black'
                       }`}
                     >
-                      Your Address
+                      Must be at least 1 character
                     </span>
-                    {errors.address && (
-                      <span
-                        className={`text-[12px]/[1rem] ${
-                          errors.address ? 'text-danger' : 'text-black'
-                        }`}
-                      >
-                        Must be at least 1 character
-                      </span>
-                    )}
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="1137 Williams Avenue"
-                    className={`${
-                      errors.address
-                        ? 'border-2 border-danger focus-within:border-danger'
-                        : 'border border-neutral-300'
-                    } rounded-lg  px-6 py-[1.125rem] text-[14px]/[19px] font-bold`}
-                    {...register('address')}
-                  />
-                </label>
-              </div>
+                  )}
+                </div>
+                <input
+                  type="text"
+                  placeholder="1137 Williams Avenue"
+                  className={`${
+                    errors.address
+                      ? 'border-2 border-danger focus-within:border-danger'
+                      : 'border border-neutral-300'
+                  } rounded-lg  px-6 py-[1.125rem] text-[14px]/[19px] font-bold`}
+                  {...register('address')}
+                />
+              </label>
             </div>
             <div>
               <label htmlFor="zipCode" className="grid gap-y-2">
@@ -308,7 +334,7 @@ export default function Form() {
           <h2 className="sub-title mb-4 text-orange-700">Payment Details</h2>
           <div className="grid gap-y-6">
             <div>
-              <div className="grid gap-y-4">
+              <div className="grid gap-y-4 md:grid-cols-2">
                 <p className="text-[12px]/[1rem] font-bold">Payment Method</p>
                 <div className="grid gap-y-4">
                   {PaymentMethods.map((method) => (
@@ -331,7 +357,7 @@ export default function Form() {
               </div>
             </div>
             {watchPaymentMethod === 'eMoney' && (
-              <>
+              <div className="grid gap-y-6 md:grid-cols-2 md:gap-x-4">
                 <div>
                   <label htmlFor="emoneynumber" className="grid gap-y-2">
                     <div className="flex items-center justify-between">
@@ -396,12 +422,12 @@ export default function Form() {
                     />
                   </label>
                 </div>
-              </>
+              </div>
             )}
             {watchPaymentMethod === 'cashOnDelivery' && (
-              <div className="flex flex-col items-center gap-4">
+              <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8">
                 <Image src={CashOnDeliveryIcon} alt="" />
-                <p className="text-center opacity-50">
+                <p className="text-center opacity-50 md:text-left">
                   The &apos;Cash on Delivery&apos; option enables you to pay in
                   cash when our delivery courier arrives at your residence. Just
                   make sure your address is correct so that your order will not
