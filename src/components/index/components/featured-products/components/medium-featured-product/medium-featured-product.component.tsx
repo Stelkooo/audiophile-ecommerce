@@ -10,6 +10,10 @@ export default function MediumFeaturedProduct() {
     <div className="relative flex h-80 flex-col items-start justify-center overflow-hidden rounded-lg">
       <picture className="absolute">
         <source
+          media="(min-width:1280px)"
+          srcSet="assets/home/desktop/image-speaker-zx7.jpg"
+        />
+        <source
           media="(min-width:768px)"
           srcSet="assets/home/tablet/image-speaker-zx7.jpg"
         />

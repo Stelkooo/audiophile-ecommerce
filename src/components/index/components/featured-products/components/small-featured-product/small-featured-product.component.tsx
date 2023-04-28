@@ -7,9 +7,13 @@ import YX1Earphones from 'public/assets/home/mobile/image-earphones-yx1.jpg';
 
 export default function SmallFeaturedProduct() {
   return (
-    <div className="grid grid-rows-2 gap-y-6 md:grid-cols-2 md:grid-rows-1 md:gap-x-3 md:gap-y-0">
+    <div className="grid grid-rows-2 gap-y-6 md:grid-cols-2 md:grid-rows-1 md:gap-x-3 md:gap-y-0 xl:gap-x-8">
       <div className="overflow-hidden rounded-lg">
         <picture>
+          <source
+            media="(min-width:1280px)"
+            srcSet="assets/home/desktop/image-earphones-yx1.jpg"
+          />
           <source
             media="(min-width:768px)"
             srcSet="assets/home/tablet/image-earphones-yx1.jpg"

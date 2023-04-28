@@ -19,7 +19,7 @@ export default function CategoryCard({ category }: Props) {
           <Image
             src={urlFor(category.thumbnail).url()}
             alt={`Click here to shop for ${category.name}`}
-            className="scale-[60%] object-contain"
+            className="scale-[60%] object-contain xl:scale-75"
             fill
           />
         </div>
