@@ -97,9 +97,14 @@ export default function Home({
         <div className="bg-neutral-900 py-8 text-center text-white md:py-24">
           <h1 className="heading-small">{category.name}</h1>
         </div>
-        <div className="mx-auto mb-[7.5rem] mt-16 grid w-[327px] gap-y-[7.5rem] text-center md:w-[689px]">
-          {category.products.map((product: IProduct) => (
-            <div className="flex flex-col gap-8" key={product._id}>
+        <div className="mx-auto mb-[7.5rem] mt-16 grid w-[327px] gap-y-[7.5rem] text-center md:w-[689px] xl:w-[1110px]">
+          {category.products.map((product: IProduct, index: number) => (
+            <div
+              className={`flex flex-col gap-8 xl:gap-32 xl:text-left ${
+                index % 2 === 0 ? 'xl:flex-row' : 'xl:flex-row-reverse'
+              }`}
+              key={product._id}
+            >
               <ProductCard product={product}>
                 <div className="justify-self-center">
                   <Link href={`/product-detail/${product.slug?.current}`}>
