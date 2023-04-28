@@ -19,6 +19,10 @@ export default function MayAlsoLikeItem({ other }: Props) {
           {other.name && (
             <picture>
               <source
+                media="(min-width:1280px)"
+                srcSet={urlFor(other.images?.desktop).url()}
+              />
+              <source
                 media="(min-width:768px)"
                 srcSet={urlFor(other.images?.tablet).url()}
               />
