@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { useRef } from 'react';
 import { useToggle, useOnClickOutside, useEffectOnce } from 'usehooks-ts';
@@ -49,19 +50,43 @@ export default function Header({ categories }: Props) {
   });
   return (
     <header className="bg-neutral-900">
-      <div className="flex items-center border-b border-white border-opacity-10 px-6 py-8 md:mx-auto md:w-[689px] md:px-0">
-        <div ref={menuRef} className="mr-auto md:mr-10">
-          <button type="button" onClick={() => menuToggle()}>
-            <Image
-              src={Hamburger}
-              alt="Click for navigation menu"
-              id="hamburger-menu"
-            />
-          </button>
-          {menu && <MenuModal categories={categories} />}
+      <div className="grid grid-flow-col border-b border-white border-opacity-10 px-6 py-8 md:mx-auto md:w-[689px] md:grid-cols-[58px_repeat(2,_1fr)] md:px-0 xl:w-[1110px] xl:grid-cols-3">
+        <div>
+          <div ref={menuRef} className="xl:hidden">
+            <button type="button" onClick={() => menuToggle()}>
+              <Image
+                src={Hamburger}
+                alt="Click for navigation menu"
+                id="hamburger-menu"
+              />
+            </button>
+            {menu && <MenuModal categories={categories} />}
+          </div>
+          <div className="hidden xl:block">
+            <nav>
+              <ul className="sub-title flex flex-col gap-4 uppercase text-white md:flex-row md:gap-8">
+                <Link href="/">
+                  <li className="hover:text-orange-300">Home</li>
+                </Link>
+                <Link href="/category/headphones">
+                  <li className="hover:text-orange-300">Headphones</li>
+                </Link>
+                <Link href="/category/speakers">
+                  <li className="hover:text-orange-300">Speakers</li>
+                </Link>
+                <Link href="/category/earphones">
+                  <li className="hover:text-orange-300">Earphones</li>
+                </Link>
+              </ul>
+            </nav>
+          </div>
         </div>
-        <Image src={Logo} alt="Audiophile Logo" />
-        <div ref={cartRef} className="ml-auto">
+        <Image
+          src={Logo}
+          alt="Audiophile Logo"
+          className="place-self-center md:place-self-start xl:col-start-1"
+        />
+        <div ref={cartRef} className="place-self-end">
           <button type="button" onClick={() => dispatch(toggleIsCartOpen())}>
             <Image src={Cart} alt="Click to see cart contents" />
           </button>

@@ -29,7 +29,7 @@ export default function Home({
     <div className={`${manrope.className}`}>
       <Header categories={categories} />
       <main className="bg-neutral-300 pb-24">
-        <div className="mx-auto w-[327px] md:w-[689px]">
+        <div className="mx-auto w-[327px] md:w-[689px] xl:w-[1110px]">
           <GoBack />
           <Form />
         </div>

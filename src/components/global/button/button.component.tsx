@@ -19,16 +19,16 @@ export default function Button({
   > = {
     primary: {
       text: 'text-white',
-      bg: 'bg-orange-700',
+      bg: 'bg-orange-700 hover:bg-orange-300',
       extra: 'px-8 py-3.5',
     },
     secondary: {
-      text: 'text-black',
-      bg: 'bg-white',
+      text: 'text-black hover:text-white',
+      bg: 'bg-white hover:bg-black',
       extra: 'border border-black px-8 py-3.5',
     },
     clear: {
-      text: 'text-black',
+      text: 'text-black group-hover/category:text-orange-300',
       bg: '',
       extra: 'text-opacity-50',
     },

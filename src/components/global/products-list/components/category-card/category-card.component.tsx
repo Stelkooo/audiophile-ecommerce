@@ -14,12 +14,12 @@ type Props = {
 export default function CategoryCard({ category }: Props) {
   return (
     <Link href={`/category/${category.slug?.current}`}>
-      <div className="relative cursor-pointer pt-14">
+      <div className="group/category relative cursor-pointer pt-14">
         <div className="absolute -top-8 h-full w-full">
           <Image
             src={urlFor(category.thumbnail).url()}
             alt={`Click here to shop for ${category.name}`}
-            className="scale-[60%] object-contain"
+            className="scale-[60%] object-contain xl:scale-75"
             fill
           />
         </div>

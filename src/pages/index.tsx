@@ -48,7 +48,7 @@ export default function Home({
       <Header categories={categories} />
       <main>
         <Hero />
-        <div className="mx-auto grid w-[327px] gap-y-[7.5rem] pb-[7.5rem] pt-10 md:w-[689px]">
+        <div className="mx-auto grid w-[327px] gap-y-[7.5rem] pb-[7.5rem] pt-10 md:w-[689px] xl:w-[1110px] xl:gap-y-40 xl:pb-52 xl:pt-[7.5rem]">
           <CategoryLinks categories={categories} />
           <FeaturedProducts />
           <About />

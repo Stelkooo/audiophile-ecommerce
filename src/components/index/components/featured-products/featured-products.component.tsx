@@ -4,7 +4,7 @@ import SmallFeaturedProduct from './components/small-featured-product/small-feat
 
 export default function FeaturedProducts() {
   return (
-    <div className="grid gap-y-6">
+    <div className="grid gap-y-6 xl:gap-y-8">
       <LargeFeaturedProduct />
       <MediumFeaturedProduct />
       <SmallFeaturedProduct />

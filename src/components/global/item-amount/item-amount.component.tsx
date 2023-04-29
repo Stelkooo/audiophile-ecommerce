@@ -19,7 +19,7 @@ export default function ItemAmount({
     >
       <button
         type="button"
-        className="aspect-square w-4 opacity-25"
+        className="aspect-square w-4 opacity-25 hover:text-orange-700 hover:opacity-100"
         onClick={() => minusOnClickHandler()}
       >
         -
@@ -27,7 +27,7 @@ export default function ItemAmount({
       <p className="aspect-square min-w-[1rem]">{amount}</p>
       <button
         type="button"
-        className="aspect-square w-4 opacity-25"
+        className="aspect-square w-4 opacity-25 hover:text-orange-700 hover:opacity-100"
         onClick={() => addOnClickHandler()}
       >
         +

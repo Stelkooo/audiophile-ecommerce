@@ -49,11 +49,11 @@ export default function Product({ product, categories }: Props) {
   };
   if (product && categories) {
     return (
-      <main className="mx-auto mb-[7.5rem] w-[327px] md:w-[689px]">
+      <main className="mx-auto mb-[7.5rem] w-[327px] md:w-[689px] xl:w-[1110px]">
         <GoBack />
         <div className="grid gap-y-[7.5rem]">
-          <div className="grid gap-y-[5.5rem]">
-            <div className="grid gap-y-8 md:grid-cols-[281px_1fr] md:gap-x-16 md:gap-y-0">
+          <div className="grid gap-y-[5.5rem] xl:grid-cols-2">
+            <div className="grid gap-y-8 md:grid-cols-[281px_1fr] md:gap-x-16 md:gap-y-0 xl:col-span-2 xl:grid-cols-[540px_1fr]">
               <ProductCard product={product}>
                 <div className="flex flex-col gap-8">
                   <p>
@@ -87,7 +87,7 @@ export default function Product({ product, categories }: Props) {
                   </p>
                 ))}
             </div>
-            <div className="grid gap-y-6 md:grid-cols-2">
+            <div className="grid gap-y-6 md:grid-cols-2 xl:grid-cols-1 xl:justify-self-center">
               <h2 className="heading-small md:heading-large">In the box</h2>
               <div className="grid gap-y-2">
                 {product.includes &&
@@ -101,10 +101,14 @@ export default function Product({ product, categories }: Props) {
                   ))}
               </div>
             </div>
-            <div className="grid gap-y-5 md:grid-cols-[277px_1fr] md:gap-x-5 md:gap-y-5">
+            <div className="grid gap-y-5 md:grid-cols-[277px_1fr] md:gap-x-5 md:gap-y-5 xl:col-span-2 xl:grid-cols-[445px_1fr] xl:gap-x-8 xl:gap-y-8">
               {product.gallery && (
                 <>
                   <picture>
+                    <source
+                      media="(min-width:1280px)"
+                      srcSet={urlFor(product.gallery.first.desktop).url()}
+                    />
                     <source
                       media="(min-width:768px)"
                       srcSet={urlFor(product.gallery.first.tablet).url()}
@@ -112,12 +116,16 @@ export default function Product({ product, categories }: Props) {
                     <Image
                       src={urlFor(product.gallery.first.mobile).url()}
                       alt=""
-                      className="rounded-lg"
+                      className="rounded-lg xl:w-full"
                       width={327}
                       height={174}
                     />
                   </picture>
                   <picture className="md:row-start-2">
+                    <source
+                      media="(min-width:1280px)"
+                      srcSet={urlFor(product.gallery.second.desktop).url()}
+                    />
                     <source
                       media="(min-width:768px)"
                       srcSet={urlFor(product.gallery.second.tablet).url()}
@@ -125,12 +133,16 @@ export default function Product({ product, categories }: Props) {
                     <Image
                       src={urlFor(product.gallery.second.mobile).url()}
                       alt=""
-                      className="rounded-lg"
+                      className="rounded-lg xl:w-full"
                       width={327}
                       height={174}
                     />
                   </picture>
                   <picture className="md:row-span-2 ">
+                    <source
+                      media="(min-width:1280px)"
+                      srcSet={urlFor(product.gallery.third.desktop).url()}
+                    />
                     <source
                       media="(min-width:768px)"
                       srcSet={urlFor(product.gallery.third.tablet).url()}

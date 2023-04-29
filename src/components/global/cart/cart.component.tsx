@@ -50,7 +50,9 @@ export default function Cart({ isSummary }: Props) {
           <>
             <p className="heading-smallest">Cart ({cartItems.length})</p>
             <button type="button" onClick={() => removeAllHandler()}>
-              <p className="opacity-50">Remove all</p>
+              <p className="opacity-50 hover:text-orange-700 hover:underline hover:opacity-100">
+                Remove all
+              </p>
             </button>
           </>
         )}
