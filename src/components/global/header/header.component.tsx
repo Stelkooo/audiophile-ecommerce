@@ -66,16 +66,16 @@ export default function Header({ categories }: Props) {
             <nav>
               <ul className="sub-title flex flex-col gap-4 uppercase text-white md:flex-row md:gap-8">
                 <Link href="/">
-                  <li>Home</li>
+                  <li className="hover:text-orange-300">Home</li>
                 </Link>
                 <Link href="/category/headphones">
-                  <li>Headphones</li>
+                  <li className="hover:text-orange-300">Headphones</li>
                 </Link>
                 <Link href="/category/speakers">
-                  <li>Speakers</li>
+                  <li className="hover:text-orange-300">Speakers</li>
                 </Link>
                 <Link href="/category/earphones">
-                  <li>Earphones</li>
+                  <li className="hover:text-orange-300">Earphones</li>
                 </Link>
               </ul>
             </nav>
