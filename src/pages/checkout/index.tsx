@@ -5,12 +5,12 @@ import client from '@/lib/sanity.client';
 
 import { ICategory } from '@/types';
 
-import GoBack from '@/components/global/go-back/go-back.component';
-import Header from '@/components/global/header/header.component';
-import Footer from '@/components/global/footer/footer.component';
-import { getCategoriesQuery } from '@/components/global/products-list/category-links.component';
-
+import GoBack from '@/components/common/go-back/go-back.component';
+import Header from '@/components/common/header/header.component';
+import Footer from '@/components/common/footer/footer.component';
 import Form from '@/components/checkout/form/form';
+
+import { getCategoriesQuery } from '@/components/common/category-links/category-links.component';
 
 const manrope = Manrope({ subsets: ['latin'] });
 

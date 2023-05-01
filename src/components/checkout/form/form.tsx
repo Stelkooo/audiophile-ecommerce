@@ -9,7 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import CashOnDeliveryIcon from 'public/assets/checkout/icon-cash-on-delivery.svg';
 
-import CheckoutModal from '@/components/global/modal/components/checkout-modal/checkout-modal.component';
+import CheckoutModal from '@/components/common/modal/common/checkout-modal/checkout-modal.component';
 import Summary from '../summary/summary.component';
 
 const PaymentMethods = [

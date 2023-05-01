@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
+import Link from 'next/link';
 import { PreviewSuspense } from 'next-sanity/preview';
 import { lazy } from 'react';
 import { Manrope } from 'next/font/google';
@@ -9,21 +10,22 @@ import client from '@/lib/sanity.client';
 
 import { ICategory, IProduct, TSlugPayload } from '@/types';
 
+import Header from '@/components/common/header/header.component';
+import Footer from '@/components/common/footer/footer.component';
+import About from '@/components/common/about/about.component';
+import Button from '@/components/common/button/button.component';
+import ProductCard from '@/components/common/product-card/product-card.component';
 import CategoryLinks, {
   getCategoriesQuery,
-} from '@/components/global/products-list/category-links.component';
-import Header from '@/components/global/header/header.component';
-import Footer from '@/components/global/footer/footer.component';
-import About from '@/components/global/about/about.component';
-import Button from '@/components/global/button/button.component';
-import ProductCard from '@/components/global/product-card/product-card.component';
-import Link from 'next/link';
+} from '@/components/common/category-links/category-links.component';
 
 const manrope = Manrope({ subsets: ['latin'] });
 
 const PreviewCategoryLinks = lazy(
   () =>
-    import('@/components/global/products-list/preview-category-links.component')
+    import(
+      '@/components/common/category-links/preview-category-links.component'
+    )
 );
 
 const getCategoriesSlug = groq`

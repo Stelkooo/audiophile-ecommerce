@@ -8,14 +8,14 @@ import { ICategory, IImage, IProduct } from '@/types';
 
 import urlFor from '@/lib/sanity.urlFor';
 
-import About from '@/components/global/about/about.component';
-import CategoryLinks from '@/components/global/products-list/category-links.component';
-import ProductCard from '@/components/global/product-card/product-card.component';
-import Button from '@/components/global/button/button.component';
-import ItemAmount from '@/components/global/item-amount/item-amount.component';
-import GoBack from '@/components/global/go-back/go-back.component';
+import About from '@/components/common/about/about.component';
+import ProductCard from '@/components/common/product-card/product-card.component';
+import Button from '@/components/common/button/button.component';
+import ItemAmount from '@/components/common/item-amount/item-amount.component';
+import GoBack from '@/components/common/go-back/go-back.component';
+import CategoryLinks from '@/components/common/category-links/category-links.component';
 
-import MayAlsoLike from './may-also-like/may-also-like.component';
+import MayAlsoLike from './common/may-also-like/may-also-like.component';
 
 type Props = {
   product: IProduct;

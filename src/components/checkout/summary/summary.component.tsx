@@ -1,4 +1,4 @@
-import Cart from '@/components/global/cart/cart.component';
+import Cart from '@/components/common/cart/cart.component';
 
 export default function Summary() {
   return (
