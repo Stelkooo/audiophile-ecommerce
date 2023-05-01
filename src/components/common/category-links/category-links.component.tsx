@@ -1,10 +1,6 @@
-import { groq } from 'next-sanity';
-
 import { ICategory } from '@/types';
 
 import CategoryCard from './common/category-card/category-card.component';
-
-export const getCategoriesQuery = groq`*[_type=="category"]`;
 
 type Props = {
   categories: ICategory[];

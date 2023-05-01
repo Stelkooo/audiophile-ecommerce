@@ -1,25 +1,18 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { Manrope } from 'next/font/google';
 
-import client from '@/lib/sanity.client';
-
-import { ICategory } from '@/types';
+import { getCategories } from '@/lib/sanity.client';
 
 import GoBack from '@/components/common/go-back/go-back.component';
 import Header from '@/components/common/header/header.component';
 import Footer from '@/components/common/footer/footer.component';
 import Form from '@/components/checkout/form/form';
 
-import { getCategoriesQuery } from '@/components/common/category-links/category-links.component';
-
 const manrope = Manrope({ subsets: ['latin'] });
 
-export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  if (preview) {
-    return { props: { preview } };
-  }
-  const categories: ICategory[] = await client.fetch(getCategoriesQuery);
-  return { props: { preview, categories } };
+export const getStaticProps: GetStaticProps = async () => {
+  const [categories] = await Promise.all([getCategories()]);
+  return { props: { categories } };
 };
 
 export default function Home({

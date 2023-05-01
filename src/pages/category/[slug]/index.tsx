@@ -1,41 +1,26 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
-import { PreviewSuspense } from 'next-sanity/preview';
-import { lazy } from 'react';
 import { Manrope } from 'next/font/google';
-import { groq } from 'next-sanity';
 import { ParsedUrlQuery } from 'querystring';
 
-import client from '@/lib/sanity.client';
-
-import { ICategory, IProduct, TSlugPayload } from '@/types';
+import { IProduct } from '@/types';
 
 import Header from '@/components/common/header/header.component';
 import Footer from '@/components/common/footer/footer.component';
 import About from '@/components/common/about/about.component';
 import Button from '@/components/common/button/button.component';
 import ProductCard from '@/components/common/product-card/product-card.component';
-import CategoryLinks, {
-  getCategoriesQuery,
-} from '@/components/common/category-links/category-links.component';
+import CategoryLinks from '@/components/common/category-links/category-links.component';
+import {
+  getCategories,
+  getCategoriesSlug,
+  getCategory,
+} from '@/lib/sanity.client';
 
 const manrope = Manrope({ subsets: ['latin'] });
 
-const PreviewCategoryLinks = lazy(
-  () =>
-    import(
-      '@/components/common/category-links/preview-category-links.component'
-    )
-);
-
-const getCategoriesSlug = groq`
-  *[_type=="category"]{
-    "slug": slug.current,
-}
-`;
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  const arr: TSlugPayload = await client.fetch(getCategoriesSlug);
+  const arr = await getCategoriesSlug();
   const paths = arr.map(({ slug }) => {
     return {
       params: { slug },
@@ -44,54 +29,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-const getCategory = groq`
-*[_type=="category" && slug.current==$slug][0]{
-  name,
-  "products": *[_type=="product" && references(^._id)]{
-    categoryImages,
-    _id,
-    isNew,
-    name,
-    description,
-    slug,
-    category-> {
-      name
-    },
-  }
-}
-`;
-
 interface Params extends ParsedUrlQuery {
   slug: string;
 }
 
-export const getStaticProps: GetStaticProps = async ({
-  preview = false,
-  params,
-}) => {
-  if (preview) {
-    return { props: { preview } };
-  }
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as Params;
-  const categories: ICategory[] = await client.fetch(getCategoriesQuery);
-  const category: ICategory = await client.fetch(getCategory, {
-    slug,
-  });
-  return { props: { preview, categories, category } };
+  const [categories, category] = await Promise.all([
+    getCategories(),
+    getCategory(slug),
+  ]);
+  return { props: { category, categories } };
 };
 
 export default function Home({
-  preview,
   categories,
   category,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  if (preview) {
-    return (
-      <PreviewSuspense fallback="Loading...">
-        <PreviewCategoryLinks />
-      </PreviewSuspense>
-    );
-  }
   return (
     <div className={`${manrope.className}`}>
       <Header categories={categories} />

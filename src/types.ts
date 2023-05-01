@@ -35,6 +35,11 @@ export interface IOther extends Base {
   images?: Images;
 }
 
+export interface INavLink extends Base {
+  name?: string;
+  slug?: Slug;
+}
+
 export type TSlugPayload = [
   {
     slug?: string;
