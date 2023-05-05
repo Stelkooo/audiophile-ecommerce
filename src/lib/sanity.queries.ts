@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity';
 
 export const navLinksQuery = groq`
-*[_type=="category"]{
+*[_type=="category"] |order(_createdAt desc){
   _id,
   name,
   slug,
@@ -18,7 +18,7 @@ export const heroQuery = groq`
 `;
 
 export const categoriesQuery = groq`
-*[_type=="category"]
+*[_type=="category"] | order(_createdAt desc)
 `;
 
 export const categoriesSlugQuery = groq`

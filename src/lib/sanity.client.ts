@@ -1,6 +1,6 @@
 import { createClient } from 'next-sanity';
 
-import { ICategory, INavLink, IProduct, TSlugPayload } from '@/types';
+import { ICategory, IHero, INavLink, IProduct, TSlugPayload } from '@/types';
 
 import {
   categoriesQuery,
@@ -9,6 +9,7 @@ import {
   productQuery,
   navLinksQuery,
   productsSlugQuery,
+  heroQuery,
 } from './sanity.queries';
 
 import { apiVersion, dataset, projectId, useCdn } from '../sanity.env';
@@ -22,6 +23,11 @@ const client = createClient({
 
 export async function getNavLinks(): Promise<INavLink[]> {
   const res = await client.fetch(navLinksQuery);
+  return res;
+}
+
+export async function getHero(): Promise<IHero> {
+  const res = await client.fetch(heroQuery);
   return res;
 }
 

@@ -40,6 +40,13 @@ export interface INavLink extends Base {
   slug?: Slug;
 }
 
+export interface IHero extends Base {
+  name: string;
+  description: string;
+  slug: string;
+  image: Images;
+}
+
 export type TSlugPayload = [
   {
     slug?: string;
