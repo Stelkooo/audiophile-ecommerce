@@ -60,6 +60,12 @@ export interface IFeatureProducts extends Base {
   small: IFeatureProduct;
 }
 
+export interface IAbout extends Base {
+  heading: object[];
+  description: string;
+  image: Images;
+}
+
 export type TSlugPayload = [
   {
     slug?: string;

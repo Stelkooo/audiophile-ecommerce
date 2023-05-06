@@ -1,6 +1,7 @@
 import { createClient } from 'next-sanity';
 
 import {
+  IAbout,
   ICategory,
   IFeatureProducts,
   IHero,
@@ -18,6 +19,7 @@ import {
   productsSlugQuery,
   heroQuery,
   featureProductsQuery,
+  aboutQuery,
 } from './sanity.queries';
 
 import { apiVersion, dataset, projectId, useCdn } from '../sanity.env';
@@ -66,6 +68,11 @@ export async function getProduct(slug: string): Promise<IProduct> {
 
 export async function getFeatureProducts(): Promise<IFeatureProducts> {
   const res = await client.fetch(featureProductsQuery);
+  return res;
+}
+
+export async function getAbout(): Promise<IAbout> {
+  const res = await client.fetch(aboutQuery);
   return res;
 }
 

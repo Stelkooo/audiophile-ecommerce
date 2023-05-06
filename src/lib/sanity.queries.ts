@@ -68,3 +68,7 @@ export const productQuery = groq`
 export const featureProductsQuery = groq`
 *[_type=="feature"][0]
 `;
+
+export const aboutQuery = groq`
+*[_type=="about"][0]
+`;

@@ -1,35 +1,58 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/heading-has-content */
+/* eslint-disable react/no-unstable-nested-components */
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import PortableText from 'react-portable-text';
 
-import BestGear from 'public/assets/shared/mobile/image-best-gear.jpg';
+import { IAbout } from '@/types';
+import { getAbout } from '@/lib/sanity.client';
+import urlFor from '@/lib/sanity.urlFor';
 
 export default function About() {
-  return (
-    <div className="flex flex-col gap-10 xl:flex-row-reverse xl:items-center xl:gap-28">
-      <picture>
-        <source
-          media="(min-width:1280px)"
-          srcSet="/assets/shared/desktop/image-best-gear.jpg"
-        />
-        <source
-          media="(min-width:768px)"
-          srcSet="/assets/shared/tablet/image-best-gear.jpg"
-        />
-        <Image src={BestGear} alt="" className="w-full rounded-lg" />
-      </picture>
-      <div className="flex flex-col items-center gap-8 text-center md:mx-auto md:w-[573px] xl:w-[445px] xl:text-left">
-        <h4 className="heading-small md:heading-larger">
-          Bringing you the <span className="text-orange-700">best</span> audio
-          gear
-        </h4>
-        <p className="opacity-50">
-          Located at the heart of New York City, Audiophile is the premier store
-          for high end headphones, earphones, speakers, and audio accessories.
-          We have a large showroom and luxury demonstration rooms available for
-          you to browse and experience a wide range of our products. Stop by our
-          store to meet some of the fantastic people who make Audiophile the
-          best place to buy your portable audio equipment.
-        </p>
+  const [about, setAbout] = useState<IAbout>();
+
+  useEffect(() => {
+    (async () => {
+      const res = await getAbout();
+      if (res) setAbout(res);
+    })();
+  }, []);
+  if (about)
+    return (
+      <div className="flex flex-col gap-10 xl:flex-row-reverse xl:items-center xl:gap-28">
+        <picture>
+          <source
+            media="(min-width:1280px)"
+            srcSet={urlFor(about.image.desktop).url()}
+          />
+          <source
+            media="(min-width:768px)"
+            srcSet={urlFor(about.image.tablet).url()}
+          />
+          <Image
+            src={urlFor(about.image.mobile).url()}
+            width={750}
+            height={750}
+            alt=""
+            className="w-full rounded-lg"
+          />
+        </picture>
+        <div className="flex flex-col items-center gap-8 text-center md:mx-auto md:w-[573px] xl:w-[445px] xl:text-left">
+          <PortableText
+            content={about.heading}
+            serializers={{
+              h4: (props: any) => (
+                <h4 className="heading-small md:heading-larger" {...props} />
+              ),
+              em: (props: any) => (
+                <em className="not-italic text-orange-700" {...props} />
+              ),
+            }}
+          />
+          <p className="opacity-50">{about.description}</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  return <div />;
 }
