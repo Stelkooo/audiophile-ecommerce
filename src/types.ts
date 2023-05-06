@@ -47,6 +47,19 @@ export interface IHero extends Base {
   image: Images;
 }
 
+export interface IFeatureProduct extends Base {
+  name: string;
+  slug: Slug;
+  description?: string;
+  images: Images;
+}
+
+export interface IFeatureProducts extends Base {
+  large: IFeatureProduct;
+  medium: IFeatureProduct;
+  small: IFeatureProduct;
+}
+
 export type TSlugPayload = [
   {
     slug?: string;

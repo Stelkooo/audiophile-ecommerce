@@ -64,3 +64,7 @@ export const productQuery = groq`
   cartImage,
 }
 `;
+
+export const featureProductsQuery = groq`
+*[_type=="feature"][0]
+`;

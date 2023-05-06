@@ -1,7 +1,7 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { Manrope } from 'next/font/google';
 
-import { getCategories } from '@/lib/sanity.client';
+import { getCategories, getFeatureProducts } from '@/lib/sanity.client';
 
 import CategoryLinks from '@/components/common/category-links/category-links.component';
 import Header from '@/components/common/header/header.component';
@@ -14,12 +14,16 @@ import FeaturedProducts from '@/components/home/common/featured-products/feature
 const manrope = Manrope({ subsets: ['latin'] });
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [categories] = await Promise.all([getCategories()]);
-  return { props: { categories } };
+  const [categories, featureProducts] = await Promise.all([
+    getCategories(),
+    getFeatureProducts(),
+  ]);
+  return { props: { categories, featureProducts } };
 };
 
 export default function Home({
   categories,
+  featureProducts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div className={`${manrope.className}`}>
@@ -28,7 +32,7 @@ export default function Home({
         <Hero />
         <div className="mx-auto grid w-[327px] gap-y-[7.5rem] pb-[7.5rem] pt-10 md:w-[689px] xl:w-[1110px] xl:gap-y-40 xl:pb-52 xl:pt-[7.5rem]">
           <CategoryLinks categories={categories} />
-          <FeaturedProducts />
+          <FeaturedProducts products={featureProducts} />
           <About />
         </div>
       </main>
