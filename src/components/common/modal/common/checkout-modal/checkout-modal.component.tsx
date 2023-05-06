@@ -39,7 +39,10 @@ export default function CheckoutModal({ toggleModalOpen }: Props) {
 
   useOnClickOutside(modalRef, returnToHomeHandler);
   return (
-    <Modal tailwind="fixed left-1/2 top-1/2 z-50 flex w-[343px] md:w-[540px] -translate-x-1/2 -translate-y-1/2 rounded-md p-8 md:p-12">
+    <Modal
+      tailwind="fixed left-1/2 top-1/2 z-50 flex w-[343px] md:w-[540px] -translate-x-1/2 -translate-y-1/2 rounded-md p-8 md:p-12"
+      toggle={returnToHomeHandler}
+    >
       <div className="grid gap-y-6 md:w-full" ref={modalRef}>
         <Image src={Check} alt="" />
         <div>

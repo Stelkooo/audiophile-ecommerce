@@ -1,10 +1,10 @@
 import { useRef } from 'react';
-import { useToggle, useOnClickOutside, useEffectOnce } from 'usehooks-ts';
+import { useToggle, useEffectOnce } from 'usehooks-ts';
 
 import { ICategory } from '@/types';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { toggleIsCartOpen, setCartItems } from '@/store/cart/cart.reducer';
+import { setCartItems, toggleIsCartOpen } from '@/store/cart/cart.reducer';
 import { selectIsCartOpen } from '@/store/cart/cart.selector';
 
 import Hamburger from './common/hamburger/hamburger.component';
@@ -22,23 +22,11 @@ type Props = {
 export default function Header({ categories }: Props) {
   const dispatch = useAppDispatch();
 
-  const isCartOpen = useAppSelector(selectIsCartOpen);
-
   const [menu, menuToggle] = useToggle(false);
+  const isCartOpen = useAppSelector(selectIsCartOpen);
 
   const menuRef = useRef<HTMLDivElement>(null);
   const cartRef = useRef<HTMLDivElement>(null);
-
-  const menuOnClickOutsideHandler = () => {
-    if (menu) menuToggle();
-  };
-
-  const cartOnClickOutsideHandler = () => {
-    if (isCartOpen) dispatch(toggleIsCartOpen());
-  };
-
-  useOnClickOutside(menuRef, menuOnClickOutsideHandler);
-  useOnClickOutside(cartRef, cartOnClickOutsideHandler);
 
   useEffectOnce(() => {
     const getLocalCartItems = localStorage.getItem('cart');
@@ -54,7 +42,7 @@ export default function Header({ categories }: Props) {
             <button type="button" onClick={() => menuToggle()}>
               <Hamburger />
             </button>
-            {menu && <MenuModal categories={categories} />}
+            {menu && <MenuModal categories={categories} toggle={menuToggle} />}
           </div>
           <div className="hidden lg:block">
             <NavLinks />
@@ -65,7 +53,9 @@ export default function Header({ categories }: Props) {
           <button type="button" onClick={() => dispatch(toggleIsCartOpen())}>
             <CartIcon />
           </button>
-          {isCartOpen && <CartModal />}
+          {isCartOpen && (
+            <CartModal toggle={() => dispatch(toggleIsCartOpen())} />
+          )}
         </div>
       </div>
     </header>
