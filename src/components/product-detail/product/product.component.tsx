@@ -46,7 +46,9 @@ export default function Product({ product, categories }: Props) {
       };
       dispatch(addItemToCart(cartItem));
     }
+    setAmount(1);
   };
+
   if (product && categories) {
     return (
       <main className="mx-auto mb-[7.5rem] w-[327px] md:w-[689px] xl:w-[1110px]">

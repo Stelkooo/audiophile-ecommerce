@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 import Logo from 'public/assets/shared/desktop/logo.svg';
+import NavLinks from '../nav-links/nav-links.component';
 
 export default function Footer() {
   return (
@@ -10,22 +10,7 @@ export default function Footer() {
         <div className="before:absolute before:top-0 before:h-1 before:w-28 before:-translate-x-1/2 before:bg-orange-700 md:before:left-10 md:before:-translate-x-0 xl:before:left-[10rem]">
           <Image src={Logo} alt="Audiophile Logo" />
         </div>
-        <nav>
-          <ul className="sub-title flex flex-col gap-4 uppercase md:flex-row md:gap-8">
-            <Link href="/">
-              <li className="hover:text-orange-300">Home</li>
-            </Link>
-            <Link href="/category/headphones">
-              <li className="hover:text-orange-300">Headphones</li>
-            </Link>
-            <Link href="/category/speakers">
-              <li className="hover:text-orange-300">Speakers</li>
-            </Link>
-            <Link href="/category/earphones">
-              <li className="hover:text-orange-300">Earphones</li>
-            </Link>
-          </ul>
-        </nav>
+        <NavLinks />
       </div>
       <div className="grid items-center gap-12 md:grid-cols-2 md:gap-20 md:text-left xl:w-full xl:grid-cols-[580px_1fr] xl:gap-x-0">
         <p className="opacity-50 md:col-span-2 xl:col-span-1">

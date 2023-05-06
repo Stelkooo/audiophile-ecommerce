@@ -104,3 +104,16 @@ interface IncludeItem {
   item?: string;
   _key?: string;
 }
+
+export interface IFormData {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  zipCode: string;
+  city: string;
+  country: string;
+  emoneynumber?: string;
+  emoneypin?: string;
+  paymentMethod: string;
+}
